@@ -12,7 +12,7 @@ module HelperMethods
   end
 
   def create_users
-    @admin = Factory :admin
+    @staff = Factory :user
   end
 
   def visit(object)

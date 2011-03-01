@@ -7,11 +7,15 @@ gem "mysql2"
 gem "haml"
 gem "jquery-rails"
 gem "simple_form"
+gem "simple_enum"
+gem "compass"
+gem "kaminari"
 
 gem "meta_where"
 
 gem "ffaker"
 gem "populator"
+
 
 group :development, :test do
   gem "rspec-rails"

@@ -1,0 +1,47 @@
+= title @ticket
+
+%table
+  %tr
+    %th Ref #
+    %td= @ticket.ref
+  %tr
+    %th Status
+    %td= t @ticket.status, :scope => [:activerecord, :enums, :statuses]
+  %tr
+    %th Customer
+    %td= fancy_name @ticket
+  %tr
+    %th Creation date
+    %td= l @ticket.created_at, :format => :short
+  %tr
+    - if @ticket.user.present?
+      %th Owned by
+      %td= fancy_name @ticket.user
+    - else
+      %td{ :colspan => 2 }
+        This ticket is not owned by any staff member.
+        = link_to "Take ownership", [:take_ownership, @ticket]
+  
+%p= @ticket.body
+
+%h2 Replies
+%ol
+  - @ticket.replies.each do |reply|
+    %li
+      %p
+        - if reply.user.present?
+          %em Staff member
+          = fancy_name reply.user
+        - else
+          %em Customer
+          = fancy_name @ticket
+        wrote:
+      %p= reply.body
+
+%h2 Reply to this ticket
+= simple_form_for @ticket do |f|
+  = f.input :reply, :as => :text
+  - if can? :manage, @ticket
+    = f.input :status, :as => :select, :collection => Ticket.statuses_for_select, :include_blank => false, :hint => "Change status of this ticket"
+    = f.association :user, :hint => "Change ownership of this ticket"
+  = f.submit "Submit"

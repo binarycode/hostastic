@@ -1,0 +1,14 @@
+= title "Ticket list"
+
+%table
+  %tr
+    %th Name
+    %th Subject
+    %th Status
+  - @tickets.each do |ticket|
+    %tr
+      %td= ticket.name
+      %td= link_to ticket.subject, ticket
+      %td= t ticket.status, :scope => [:activerecord, :enums, :statuses]
+
+= paginate @tickets

@@ -1,0 +1,55 @@
+form
+  .boolean
+    input, label
+      +inline-block
+      vertical-align: baseline
+    label
+      padding-left: 10px 
+
+label
+  display: block
+  cursor: pointer
+
+input[type=tel]
+  width: 300px
+  border: 1px solid #bbb
+  margin: 0.5em 0
+  background: #fff
+  padding: 5px
+  &:focus
+    border: 1px solid #666
+
+
+input[type=button],
+input[type=submit]
+  padding: 5px
+
+.input
+  margin: 0.75em 0
+
+.hint, .error
+  display: block
+  font-size: 10px
+
+.hint
+  color: #666
+
+.error
+  color: #a00
+
+.field_with_errors label
+  color: #b00
+
+input.date
+  background: white url("/images/calendar.png") 290px center no-repeat
+  color: #000
+
+textarea.mceEditor
+  width: 600px
+  height: 500px
+
+label[for=news_content],
+label[for=author_text],
+label[for=article_content],
+label[for=article_topic_ids]
+  display: none
